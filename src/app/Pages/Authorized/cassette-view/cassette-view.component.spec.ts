@@ -3,20 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AuthorizedComponent } from './authorized.component';
+import { CassetteViewComponent } from './cassette-view.component';
 
-describe('AuthorizedComponent', () => {
-  let component: AuthorizedComponent;
-  let fixture: ComponentFixture<AuthorizedComponent>;
+describe('CassetteViewComponent', () => {
+  let component: CassetteViewComponent;
+  let fixture: ComponentFixture<CassetteViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AuthorizedComponent],
-    }).compileComponents();
+      declarations: [ CassetteViewComponent ]
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorizedComponent);
+    fixture = TestBed.createComponent(CassetteViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

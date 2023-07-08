@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { LoginCredentials } from 'src/app/Models/Backend/LoginCredentials';
 import { ApiService } from '../api.service';
 import { User } from 'src/app/Models/Backend/User';
-import { ConstService } from '../Const/const.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { ConstRouteService } from '../Const/const-route.service';
 
 const TOKEN_KEY = 'token';
 const REFRESH_KEY = 'refresh';
@@ -15,11 +16,6 @@ const REFRESH_KEY = 'refresh';
 export class AuthorizationService {
   private _token: string;
   private _refreshToken: string;
-  private _user: User;
-
-  get user(): User {
-    return JSON.parse(JSON.stringify(this._user));
-  }
 
   get token(): string {
     return this._token;
@@ -32,7 +28,11 @@ export class AuthorizationService {
     return !!this._token;
   }
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private api: ApiService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   saveToken(token: string, refreshToken: string): void {
     this._token = token;
@@ -44,16 +44,14 @@ export class AuthorizationService {
   login(credentials: LoginCredentials): Observable<boolean> {
     return this.api.login(credentials).pipe(
       tap((res) => {
-        console.log(this._user);
-
         this.saveToken(res.token, res.refreshToken);
       }),
       map(() => {
-        console.log(this._user);
         return true;
       }),
-      catchError(async (res) => {
-        return false;
+      catchError((err) => {
+        console.log(err);
+        return of(false);
       })
     );
   }
@@ -63,8 +61,8 @@ export class AuthorizationService {
     window.localStorage.removeItem(REFRESH_KEY);
     this._refreshToken = null;
     this._token = null;
-    this._user = null;
-    this.router.navigate([`/${ConstService.login}`]);
+    this.userService.removeUser();
+    this.router.navigate([`/${ConstRouteService.login}`]);
   }
 
   sendRefreshToken(): Observable<void> {

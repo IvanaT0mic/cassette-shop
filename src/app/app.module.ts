@@ -8,6 +8,7 @@ import { LoginComponent } from './Pages/Unauthorized/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './Shared/shared/shared.module';
+import { AuthorizedComponent } from './Pages/Authorized/authorized.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,13 @@ import { SharedModule } from './Shared/shared/shared.module';
 
     //Pages
     LoginComponent,
+    AuthorizedComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule,
+    // HttpClientModule,
+    // ReactiveFormsModule,
+    // RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,

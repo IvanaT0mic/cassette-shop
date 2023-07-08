@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LoginCredentials } from 'src/app/Models/Backend/LoginCredentials';
 import { LoginResponse } from 'src/app/Models/Backend/LoginResponse';
 import { RefreshTokenResponse } from 'src/app/Models/Backend/RefreshTokenResponse';
+import { User } from '../Models/Backend/User';
 
 const API_KEY = 'https://localhost:7243/api/';
 
@@ -15,7 +16,7 @@ export class ApiService {
 
   login(credentials: LoginCredentials): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(API_KEY + 'Authentication/login', {
-      Email: credentials.Username,
+      Email: credentials.Email,
       Password: credentials.Password,
     });
   }
@@ -27,5 +28,9 @@ export class ApiService {
         refreshToken: refreshToken,
       }
     );
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(API_KEY + 'User/getCurrent');
   }
 }

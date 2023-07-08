@@ -1,23 +1,22 @@
-import { AuthorizedComponent } from './Pages/Authorized/Authorized.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Pages/Unauthorized/login/login.component';
-import { ConstService } from './Services/Const/const.service';
+import { ConstRouteService } from './Services/Const/const-route.service';
 
 const routes: Routes = [
   {
-    path: ConstService.login,
+    path: ConstRouteService.login,
     component: LoginComponent,
   },
   {
-    path: ConstService.home,
+    path: ConstRouteService.home,
     loadChildren: () =>
-      import('./Pages/Authorized/Authorized.module').then(
+      import('./Pages/Authorized/authorized.module').then(
         (x) => x.AuthorizedModule
       ),
   },
-  { path: '', redirectTo: ConstService.login, pathMatch: 'full' },
-  { path: '**', redirectTo: ConstService.login },
+  { path: '', redirectTo: ConstRouteService.login, pathMatch: 'full' },
+  { path: '**', redirectTo: ConstRouteService.login },
 ];
 
 @NgModule({

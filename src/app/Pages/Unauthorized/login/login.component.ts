@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LoginCredentials } from 'src/app/Models/Backend/LoginCredentials';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { AuthorizationService } from 'src/app/Services/Auth/authorization.service';
-import { ConstService } from 'src/app/Services/Const/const.service';
+import { ConstRouteService } from 'src/app/Services/Const/const-route.service';
 
 @Component({
   selector: 'app-login',
@@ -39,13 +39,25 @@ export class LoginComponent extends CommonComponent implements OnInit {
       return;
     }
     const credentials = new LoginCredentials();
-    credentials.Username = this.loginForm.value.email;
+    credentials.Email = this.loginForm.value.email;
     credentials.Password = this.loginForm.value.password;
 
+    this.loginApi(credentials);
+  }
+
+  loginAsGuest() {
+    const credentials = new LoginCredentials();
+    credentials.Email = 'guest@guest.com';
+    credentials.Password = 'Guest123';
+
+    this.loginApi(credentials);
+  }
+
+  loginApi(credentials: LoginCredentials): void {
     this.authorizationService.login(credentials).subscribe((res) => {
       this.loginInvalid = !res;
       if (res) {
-        this.router.navigate([`/${ConstService.admin}`]);
+        this.router.navigate([`/${ConstRouteService.home}`]);
       }
     });
   }
