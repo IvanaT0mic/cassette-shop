@@ -8,6 +8,7 @@ import { CassetteModel } from 'src/app/Models/Backend/CassetteModel';
 })
 export class CardComponent implements OnInit {
   @Input() card: CassetteModel;
+  @Input() showRentBtn: boolean;
   pictureUrl: string = 'cassette-tape';
 
   constructor() {}

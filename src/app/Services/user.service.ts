@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, mergeMap } from 'rxjs';
 import { User } from '../Models/Backend/User';
+import { UserForUpdate } from '../Models/Backend/UserForUpdate';
 
 @Injectable({
   providedIn: 'root',
@@ -56,5 +57,17 @@ export class UserService {
 
   getAllUsers(): Observable<Array<User>> {
     return this.api.getAllUsers();
+  }
+
+  getUserById(id: number): Observable<User> {
+    return this.api.getUserById(id);
+  }
+
+  updateUser(user: UserForUpdate): Observable<any> {
+    return this.api.updateUser(user.id, user).pipe(
+      mergeMap(() => {
+        return this.setCurrentUser();
+      })
+    );
   }
 }

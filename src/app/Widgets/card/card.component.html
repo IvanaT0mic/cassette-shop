@@ -6,7 +6,7 @@
     <p>Name : {{ card.name }}</p>
     <p>Quantity: {{ card.quantity }}</p>
   </div>
-  <div class="card-buttons">
+  <div class="card-buttons" *ngIf="showRentBtn">
     <button type="button" class="btn btn-info">Iznajmi</button>
   </div>
 </div>

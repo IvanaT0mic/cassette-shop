@@ -6,6 +6,7 @@ import { LoginResponse } from 'src/app/Models/Backend/LoginResponse';
 import { RefreshTokenResponse } from 'src/app/Models/Backend/RefreshTokenResponse';
 import { User } from '../Models/Backend/User';
 import { CassetteModel } from '../Models/Backend/CassetteModel';
+import { UserForUpdate } from '../Models/Backend/UserForUpdate';
 
 const API_KEY = 'https://localhost:7243/api/';
 
@@ -22,10 +23,6 @@ export class ApiService {
     });
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(API_KEY + 'Authentication/getById/' + id);
-  }
-
   sendRefreshToken(refreshToken: string): Observable<RefreshTokenResponse> {
     return this.http.post<RefreshTokenResponse>(
       API_KEY + 'Authentication/refresh',
@@ -34,6 +31,8 @@ export class ApiService {
       }
     );
   }
+
+  //CassetteController
 
   getAllCassets(): Observable<any> {
     return this.http.get<any>(API_KEY + 'Cassette/GetAllCassettes');
@@ -51,11 +50,21 @@ export class ApiService {
     );
   }
 
+  //UserController
+
   getAllUsers(): Observable<Array<User>> {
     return this.http.get<Array<User>>(API_KEY + 'User/');
   }
 
   getCurrentUser(): Observable<any> {
     return this.http.get<any>(API_KEY + 'User/getCurrent');
+  }
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(API_KEY + 'User/getById?id=' + id);
+  }
+
+  updateUser(id: number, user: UserForUpdate) {
+    return this.http.put<UserForUpdate>(API_KEY + 'User/' + id, user);
   }
 }

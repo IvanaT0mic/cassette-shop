@@ -1,3 +1,40 @@
-<p>
-  profile works!
-</p>
+<div class="content">
+  <form class="form" [formGroup]="userForm" (ngSubmit)="save()">
+    <div class="Group">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        formControlName="firstName"
+      />
+    </div>
+    <div class="Group">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        formControlName="lastName"
+      />
+    </div>
+    <div class="Group">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+    </div>
+    <div class="Group">
+      <button
+        [ngClass]="!userForm.valid ? 'disabled-button' : 'btn'"
+        [disabled]="!userForm.valid"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

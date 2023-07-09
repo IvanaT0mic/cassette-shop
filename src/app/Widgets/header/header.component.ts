@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/Services/Auth/authorization.service';
+import { PermissionEnum } from 'src/app/Services/Const/PermissionEnum.enum';
 import { ConstRouteService } from 'src/app/Services/Const/const-route.service';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.fullName = this.userService.user.fullName;
-    this.isAdmin = this.userService.hasPrivilage(3);
+    this.isAdmin = this.userService.hasPrivilage(PermissionEnum.canManageUser);
   }
 
   logout() {

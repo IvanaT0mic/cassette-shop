@@ -8,7 +8,7 @@
     </h4>
     <div class="cards">
       <div *ngFor="let x of cassettes">
-        <app-card [card]="x"></app-card>
+        <app-card [card]="x" [showRentBtn]="rentCassette"></app-card>
       </div>
     </div>
   </div>

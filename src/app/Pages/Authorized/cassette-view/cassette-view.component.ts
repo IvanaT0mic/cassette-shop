@@ -5,6 +5,7 @@ import { CassetteModel } from 'src/app/Models/Backend/CassetteModel';
 import { User } from 'src/app/Models/Backend/User';
 import { UserService } from 'src/app/Services/user.service';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
+import { PermissionEnum } from 'src/app/Services/Const/PermissionEnum.enum';
 
 @Component({
   selector: 'app-cassette-view',
@@ -13,6 +14,7 @@ import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 })
 export class CassetteViewComponent extends CommonComponent implements OnInit {
   user: User;
+  rentCassette: boolean = false;
   cassettes: Array<CassetteModel> = new Array<CassetteModel>();
 
   constructor(
@@ -24,6 +26,7 @@ export class CassetteViewComponent extends CommonComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.user;
+    this.rentCassette = this.userService.hasPrivilage(PermissionEnum.canRent);
     this.cassetteService
       .getAllCassettes()
       .pipe(takeUntil(this.localNgUnsubscribe))
