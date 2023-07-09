@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { CassetteModel } from '../Models/Backend/CassetteModel';
 import { Observable, map, of, mergeMap } from 'rxjs';
+import { RentCassetteModel } from '../Models/Backend/RentCassetteModel';
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +47,13 @@ export class CassetteService {
         );
       })
     );
+  }
+
+  rentCassette(rentModel: RentCassetteModel): Observable<any> {
+    return this.apiService.rentCassette(rentModel);
+  }
+
+  returnCassette(rentModel: RentCassetteModel): Observable<any> {
+    return this.apiService.returnCassette(rentModel);
   }
 }

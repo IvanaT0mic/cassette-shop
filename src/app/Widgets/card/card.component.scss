@@ -9,7 +9,7 @@
 
   border-radius: 5px;
   max-width: 300px;
-  min-height: 380px;
+  min-height: 450px;
 
   display: flex;
   flex-direction: column;
@@ -32,10 +32,11 @@
   }
 
   .card-buttons {
-    height: 2rem;
+    height: 5rem;
     width: 100%;
 
     button {
+      margin-bottom: 5px;
       width: 100%;
     }
   }

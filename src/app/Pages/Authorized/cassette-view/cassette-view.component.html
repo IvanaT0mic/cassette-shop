@@ -13,11 +13,7 @@
     </div>
     <div class="cards">
       <div *ngFor="let x of cassettes">
-        <app-card
-          [card]="x"
-          [showRentBtn]="rentCassette"
-          [isAdmin]="editCassette"
-        ></app-card>
+        <app-card [card]="x" [showRentBtn]="rentCassette"></app-card>
       </div>
     </div>
   </div>

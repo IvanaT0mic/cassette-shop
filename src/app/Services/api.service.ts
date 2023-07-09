@@ -8,6 +8,7 @@ import { User } from '../Models/Backend/User';
 import { CassetteModel } from '../Models/Backend/CassetteModel';
 import { UserForUpdate } from '../Models/Backend/UserForUpdate';
 import { CreateUser } from '../Models/Backend/CreateUser';
+import { RentCassetteModel } from '../Models/Backend/RentCassetteModel';
 
 const API_KEY = 'https://localhost:7243/api/';
 
@@ -55,6 +56,20 @@ export class ApiService {
     return this.http.post<CassetteModel>(
       API_KEY + 'Cassette/createCassete',
       cassette
+    );
+  }
+
+  rentCassette(rentModel: RentCassetteModel): Observable<any> {
+    return this.http.post<RentCassetteModel>(
+      API_KEY + 'Cassette/rentCassete',
+      rentModel
+    );
+  }
+
+  returnCassette(returnModel: RentCassetteModel): Observable<any> {
+    return this.http.post<RentCassetteModel>(
+      API_KEY + 'Cassette/returnCassete',
+      returnModel
     );
   }
 
