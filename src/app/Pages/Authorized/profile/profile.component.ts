@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { User } from 'src/app/Models/Backend/User';
 import { UserForUpdate } from 'src/app/Models/Backend/UserForUpdate';
@@ -17,25 +18,36 @@ export class ProfileComponent extends CommonComponent implements OnInit {
 
   userForm: FormGroup;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private activeRoute: ActivatedRoute
+  ) {
     super();
   }
 
   ngOnInit() {
-    this.createUserForUpdate();
+    let id = this.activeRoute.snapshot.paramMap.get('id');
 
-    this.userForm = new FormGroup({
-      firstName: new FormControl(this.userForUpdate.firstName, [
-        Validators.required,
-      ]),
-      lastName: new FormControl(this.userForUpdate.lastName, [
-        Validators.required,
-      ]),
-      email: new FormControl(this.userForUpdate.email, [
-        Validators.required,
-        Validators.email,
-      ]),
-    });
+    if (id == undefined) {
+      this.updateCurrentUser();
+      return;
+    }
+    this.updateUserById(Number(id));
+  }
+
+  updateCurrentUser(): void {
+    this.currentUser = this.userService.user;
+    this.createUserForUpdate();
+  }
+
+  updateUserById(id: number) {
+    this.userService
+      .getUserById(id)
+      .pipe(takeUntil(this.localNgUnsubscribe))
+      .subscribe((res) => {
+        this.currentUser = res;
+        this.createUserForUpdate();
+      });
   }
 
   save(): void {
@@ -59,12 +71,24 @@ export class ProfileComponent extends CommonComponent implements OnInit {
   }
 
   createUserForUpdate(): void {
-    this.currentUser = this.userService.user;
     this.userForUpdate.id = this.currentUser.id;
     let separatedName = separateNameAndLastName(this.currentUser.fullName);
     this.userForUpdate.firstName = separatedName.firstName;
     this.userForUpdate.lastName = separatedName.lastName;
     this.userForUpdate.email = this.currentUser.email;
+
+    this.userForm = new FormGroup({
+      firstName: new FormControl(this.userForUpdate.firstName, [
+        Validators.required,
+      ]),
+      lastName: new FormControl(this.userForUpdate.lastName, [
+        Validators.required,
+      ]),
+      email: new FormControl(this.userForUpdate.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+    });
   }
 }
 

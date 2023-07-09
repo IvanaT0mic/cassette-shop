@@ -1,7 +1,20 @@
 <div class="nav-buttons row">
-  <button (click)="navigateToCassettes()" class="btn">Home</button>
-  <button (click)="navigateToCassettes()" class="btn">Cassette</button>
-  <button (click)="navigateToUsers()" class="btn" *ngIf="isAdmin">Users</button>
-  <button (click)="navigateToProfile()" class="btn">Profile</button>
+  <button (click)="navigateToCassettes()" class="btn" mat-raised-button>
+    Home
+  </button>
+  <button (click)="navigateToCassettes()" class="btn" mat-raised-button>
+    Cassette
+  </button>
+  <button
+    (click)="navigateToUsers()"
+    class="btn"
+    *ngIf="isAdmin"
+    mat-raised-button
+  >
+    Users
+  </button>
+  <button (click)="navigateToProfile()" class="btn" mat-raised-button>
+    Profile
+  </button>
   <button class="btn" (click)="logout()">Logout</button>
 </div>

@@ -1,3 +1,31 @@
-<p>
-  cassette-managment-page works!
-</p>
+<div class="content">
+  <form class="form" [formGroup]="cassetteForm" (ngSubmit)="save()">
+    <div class="Group">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+    </div>
+    <div class="Group">
+      <label for="quantity" class="form-label">Quantity</label>
+      <input
+        type="number"
+        class="form-control"
+        id="quantity"
+        formControlName="quantity"
+      />
+    </div>
+    <div class="Group">
+      <button
+        [ngClass]="!cassetteForm.valid ? 'disabled-button' : 'btn'"
+        [disabled]="!cassetteForm.valid"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

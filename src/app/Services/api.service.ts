@@ -7,6 +7,7 @@ import { RefreshTokenResponse } from 'src/app/Models/Backend/RefreshTokenRespons
 import { User } from '../Models/Backend/User';
 import { CassetteModel } from '../Models/Backend/CassetteModel';
 import { UserForUpdate } from '../Models/Backend/UserForUpdate';
+import { CreateUser } from '../Models/Backend/CreateUser';
 
 const API_KEY = 'https://localhost:7243/api/';
 
@@ -50,6 +51,13 @@ export class ApiService {
     );
   }
 
+  createCassette(cassette: CassetteModel): Observable<any> {
+    return this.http.post<CassetteModel>(
+      API_KEY + 'Cassette/createCassete',
+      cassette
+    );
+  }
+
   //UserController
 
   getAllUsers(): Observable<Array<User>> {
@@ -66,5 +74,9 @@ export class ApiService {
 
   updateUser(id: number, user: UserForUpdate) {
     return this.http.put<UserForUpdate>(API_KEY + 'User/' + id, user);
+  }
+
+  registerUser(user: CreateUser) {
+    return this.http.post<CreateUser>(API_KEY + 'User/register', user);
   }
 }

@@ -24,6 +24,7 @@ import { CardComponent } from 'src/app/Widgets/card/card.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
 
     MatToolbarModule,
     MatInputModule,
@@ -37,14 +38,13 @@ import { CardComponent } from 'src/app/Widgets/card/card.component';
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
-    ReactiveFormsModule,
     MatListModule,
     MatNativeDateModule,
-    ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
 
     MatToolbarModule,
     MatInputModule,
@@ -58,10 +58,8 @@ import { CardComponent } from 'src/app/Widgets/card/card.component';
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
-    ReactiveFormsModule,
     MatListModule,
     MatNativeDateModule,
-    ReactiveFormsModule,
 
     HeaderComponent,
     DialogComponent,

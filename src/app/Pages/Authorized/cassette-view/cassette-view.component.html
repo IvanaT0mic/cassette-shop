@@ -2,13 +2,22 @@
   <div class="inner-wrapper">
     <h1>Welcome {{ user?.fullName }}</h1>
     <h2>Here at Videoteka you can rent tv shows and movies</h2>
-    <h4>
+    <h4 *ngIf="!editCassette">
       To rent movies, please contact an admin, and he will get back to you as
       soon as possible!
     </h4>
+    <div style="margin-bottom: 10px" *ngIf="editCassette">
+      <button mat-raised-button (click)="manageCassetePage()">
+        Add new cassette
+      </button>
+    </div>
     <div class="cards">
       <div *ngFor="let x of cassettes">
-        <app-card [card]="x" [showRentBtn]="rentCassette"></app-card>
+        <app-card
+          [card]="x"
+          [showRentBtn]="rentCassette"
+          [isAdmin]="editCassette"
+        ></app-card>
       </div>
     </div>
   </div>

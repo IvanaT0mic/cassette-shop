@@ -1,4 +1,4 @@
-<div class="content" *ngIf="currentUser != null">
+<div class="content">
   <form class="form" [formGroup]="userForm" (ngSubmit)="save()">
     <div class="Group">
       <label for="firstName" class="form-label">First Name</label>
@@ -18,13 +18,22 @@
         formControlName="lastName"
       />
     </div>
-    <div class="Group" *ngIf="userForUpdate.email != 'guest@guest.com'">
+    <div class="Group">
       <label for="email" class="form-label">Email</label>
       <input
         type="email"
         class="form-control"
         id="email"
         formControlName="email"
+      />
+    </div>
+    <div class="Group">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
       />
     </div>
     <div class="Group">

@@ -1,5 +1,8 @@
 <div class="card">
   <div class="card-img">
+    <div (click)="editCassete()" class="edit-cassete" *ngIf="isAdmin">
+      <img src="../../../assets/Img/editing.png" alt="edit" />
+    </div>
     <img src="../../../assets/Img/{{ pictureUrl }}" alt="card-picture" />
   </div>
   <div class="card-info">
@@ -7,6 +10,6 @@
     <p>Quantity: {{ card.quantity }}</p>
   </div>
   <div class="card-buttons" *ngIf="showRentBtn">
-    <button type="button" class="btn btn-info">Iznajmi</button>
+    <button type="button" mat-raised-button>Rent</button>
   </div>
 </div>

@@ -7,15 +7,24 @@ import { CassetteManagmentPageComponent } from './cassette-managment-page/casset
 import { CassetteViewComponent } from './cassette-view/cassette-view.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersManagmentComponent } from './users-managment/users-managment.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, AuthorizedRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AuthorizedRoutingModule,
+    SharedModule,
+  ],
   declarations: [
     //PAGES
     CassetteManagmentPageComponent,
     CassetteViewComponent,
     ProfileComponent,
     UsersManagmentComponent,
+    UserRegisterComponent,
   ],
+  exports: [CommonModule, ReactiveFormsModule],
 })
 export class AuthorizedModule {}

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, map, mergeMap } from 'rxjs';
 import { User } from '../Models/Backend/User';
 import { UserForUpdate } from '../Models/Backend/UserForUpdate';
+import { CreateUser } from '../Models/Backend/CreateUser';
 
 @Injectable({
   providedIn: 'root',
@@ -43,11 +44,11 @@ export class UserService {
       case 'admin@admin.com':
         user.permissionIds = [1, 2, 3, 4];
         break;
-      case 'user@user.com':
-        user.permissionIds = [1, 2];
+      case 'guest@guest.com':
+        user.permissionIds = [1];
         break;
       default:
-        user.permissionIds = [1];
+        user.permissionIds = [1, 2];
     }
   }
 
@@ -69,5 +70,9 @@ export class UserService {
         return this.setCurrentUser();
       })
     );
+  }
+
+  registerUser(user: CreateUser): Observable<any> {
+    return this.api.registerUser(user);
   }
 }

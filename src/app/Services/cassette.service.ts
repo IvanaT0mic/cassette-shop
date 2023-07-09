@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { CassetteModel } from '../Models/Backend/CassetteModel';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map, of, mergeMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +23,28 @@ export class CassetteService {
     return of(this.cassettesData);
   }
 
+  getById(id: number): CassetteModel {
+    let data = this.cassettesData.find((x) => x.id == id);
+    return data;
+  }
+
   getCurrentUserRentedCassettes() {
     return this.apiService.getCurrentUserRentedCassettes();
   }
 
   getRentedCassetessByUserId(id: number) {
     return this.apiService.getRentedCassetessByUserId(id);
+  }
+
+  createCassette(cassette: CassetteModel): Observable<any> {
+    return this.apiService.createCassette(cassette).pipe(
+      mergeMap(() => {
+        return this.apiService.getAllCassets().pipe(
+          map((x) => {
+            this.cassettesData = x;
+          })
+        );
+      })
+    );
   }
 }

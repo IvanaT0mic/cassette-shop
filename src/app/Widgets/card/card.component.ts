@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CassetteModel } from 'src/app/Models/Backend/CassetteModel';
+import { ConstRouteService } from 'src/app/Services/Const/const-route.service';
 
 @Component({
   selector: 'app-card',
@@ -7,11 +9,12 @@ import { CassetteModel } from 'src/app/Models/Backend/CassetteModel';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  @Input() isAdmin: boolean;
   @Input() card: CassetteModel;
   @Input() showRentBtn: boolean;
   pictureUrl: string = 'cassette-tape';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.choosePictureRandom();
@@ -24,5 +27,13 @@ export class CardComponent implements OnInit {
 
   randomIntFromInterval(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  editCassete(): void {
+    this.router.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.manageCassettes}` +
+        '/' +
+        this.card.id,
+    ]);
   }
 }
