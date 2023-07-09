@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, map, mergeMap, of, tap } from 'rxjs';
 import { LoginCredentials } from 'src/app/Models/Backend/LoginCredentials';
 import { ApiService } from '../api.service';
-import { User } from 'src/app/Models/Backend/User';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ConstRouteService } from '../Const/const-route.service';
@@ -46,8 +45,12 @@ export class AuthorizationService {
       tap((res) => {
         this.saveToken(res.token, res.refreshToken);
       }),
-      map(() => {
-        return true;
+      mergeMap(() => {
+        return this.userService.setCurrentUser().pipe(
+          map(() => {
+            return true;
+          })
+        );
       }),
       catchError((err) => {
         console.log(err);
@@ -71,5 +74,12 @@ export class AuthorizationService {
         this.saveToken(res.token, res.refreshToken);
       })
     );
+  }
+
+  //QA method se koristi na app modul da bi se na citanje modula pokrenulo
+  //uzimanje tokena iz LS kako to ne bi radili na gardovima oko logina, ili home page
+  initService(): void {
+    this._refreshToken = window.localStorage.getItem(REFRESH_KEY);
+    this._token = window.localStorage.getItem(TOKEN_KEY);
   }
 }

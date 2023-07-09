@@ -10,39 +10,29 @@ import { Observable, map, of } from 'rxjs';
 import { ConstRouteService } from '../Const/const-route.service';
 import { UserService } from '../user.service';
 
-//QA 'CanActivate' is deprecated.
-//so we create function
-function validatePermission(
-  route: ActivatedRouteSnapshot
-): Observable<boolean> {
-  const requiredPrivilege = route.data['requiredPrivilege'];
-  const pageToNavigate = route.data['navigatePage'];
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuardService implements CanActivate {
+  constructor(
+    private router: Router,
+    private authorizationService: AuthorizationService,
+    private userService: UserService
+  ) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> {
+    if (!this.authorizationService.isAuthorizated) {
+      this.router.navigate[`/${ConstRouteService.login}`];
+      this.authorizationService.logout();
+      return of(false);
+    }
 
-  if (!this.authorizationService.hasPrivilage(requiredPrivilege)) {
-    this.router.navigate([`/${pageToNavigate}`]);
+    return this.userService.setCurrentUser().pipe(
+      map(() => {
+        return true;
+      })
+    );
   }
-  return of(true);
 }
-
-export const authGuard = () => {
-  const authService = inject(AuthorizationService);
-  const userService = inject(UserService);
-  const router = inject(Router);
-  const activatedRouteSnapshot = inject(ActivatedRouteSnapshot);
-
-  if (!authService.isAuthorizated) {
-    router.navigate[`/${ConstRouteService.login}`];
-    authService.logout();
-    return of(false);
-  }
-
-  if (!userService.isAuthenticated) {
-    return validatePermission(activatedRouteSnapshot);
-  }
-
-  return userService.setCurrentUser().pipe(
-    map(() => {
-      return true;
-    })
-  );
-};

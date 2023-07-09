@@ -3,14 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthorizedComponent } from './authorized.component';
 import { CassetteViewComponent } from './cassette-view/cassette-view.component';
 import { ConstRouteService } from 'src/app/Services/Const/const-route.service';
-import { UserResolver } from 'src/app/Services/Guards/user.resolver';
+import { AuthGuardService } from 'src/app/Services/Guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AuthorizedComponent,
-    // canActivate: [AuthGuard],
-    resolve: { user: UserResolver },
+    canActivate: [AuthGuardService],
     // canDeactivate: [LeaveGuardService],
     // data: {
     //   requiredPrivilege: PrivilagesEnum.adminPrivilages,
@@ -18,16 +17,10 @@ const routes: Routes = [
     // },
     children: [
       {
-        path: ConstRouteService.home,
+        path: ConstRouteService.cassetts,
         component: CassetteViewComponent,
-        // resolve: {data: BaseDataResolver}
-        // canActivate: [AuthGuardService],
-        data: {
-          // requiredPrivilege: PrivilagesEnum.adminPrivilages,
-          navigatePage: ConstRouteService.user,
-        },
       },
-      { path: '', redirectTo: ConstRouteService.home, pathMatch: 'full' },
+      { path: '', redirectTo: ConstRouteService.cassetts, pathMatch: 'full' },
 
       // {
       //   path: ConstService.profile,

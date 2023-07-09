@@ -8,7 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class CassetteViewComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {
-    console.log('Done');
-  }
+  ngOnInit() {}
 }

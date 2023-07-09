@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 export class ConstRouteService {
   static readonly login: string = 'login';
   static readonly home: string = 'home';
-  static readonly admin: string = 'admin';
-  static readonly user: string = 'user';
+  static readonly cassetts: string = 'cassetts';
   static readonly profile: string = 'profile';
   static readonly rentCassetes: string = 'rent-cassettes';
   static readonly manageUsers: string = 'manage-users';

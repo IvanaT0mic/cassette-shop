@@ -1,6 +1,9 @@
+import { UserService } from 'src/app/Services/user.service';
+import { ApiService } from './../../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map, mergeMap, of } from 'rxjs';
 import { LoginCredentials } from 'src/app/Models/Backend/LoginCredentials';
 import { CommonComponent } from 'src/app/Models/CommonComponent.component';
 import { AuthorizationService } from 'src/app/Services/Auth/authorization.service';
@@ -26,13 +29,21 @@ export class LoginComponent extends CommonComponent implements OnInit {
 
   constructor(
     private authorizationService: AuthorizationService,
+    private userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.authorizationService.isAuthorizated) {
+      this.userService.setCurrentUser().subscribe(() => {
+        this.loginInvalid = false;
+        this.router.navigate([`/${ConstRouteService.home}`]);
+      });
+    }
+  }
 
   login(): void {
     if (this.loginForm.invalid) {

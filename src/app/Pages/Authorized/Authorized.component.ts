@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/Models/Backend/User';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-Authorized',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Authorized.component.scss'],
 })
 export class AuthorizedComponent implements OnInit {
-  constructor() {}
+  user: User = null;
 
-  ngOnInit() {}
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.user = this.userService.user;
+  }
 }
