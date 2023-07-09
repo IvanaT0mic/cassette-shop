@@ -1,7 +1,7 @@
 <div class="nav-buttons row">
-  <button routerLink="/home" class="btn">Home</button>
-  <button routerLink="/cassetts" class="btn">Cassette</button>
-  <button routerLink="/manage-users" class="btn" *ngIf="isAdmin">Users</button>
-  <button routerLink="/profile" class="btn">Profile</button>
+  <button (click)="navigateToCassettes()" class="btn">Home</button>
+  <button (click)="navigateToCassettes()" class="btn">Cassette</button>
+  <button (click)="navigateToUsers()" class="btn" *ngIf="isAdmin">Users</button>
+  <button (click)="navigateToProfile()" class="btn">Profile</button>
   <button class="btn" (click)="logout()">Logout</button>
 </div>

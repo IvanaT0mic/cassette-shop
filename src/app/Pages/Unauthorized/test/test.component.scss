@@ -1,0 +1,23 @@
+.test-div {
+  height: 500px;
+  width: 400px;
+  background-color: rebeccapurple;
+
+  margin-bottom: 20px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  height: calc(100% - 2rem);
+  overflow: scroll;
+  overflow-x: hidden;
+}

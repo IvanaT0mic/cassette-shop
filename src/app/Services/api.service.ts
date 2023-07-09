@@ -36,7 +36,7 @@ export class ApiService {
   }
 
   getAllCassets(): Observable<any> {
-    return this.http.get<CassetteModel>(API_KEY + 'Cassette/GetAllCassettes');
+    return this.http.get<any>(API_KEY + 'Cassette/GetAllCassettes');
   }
 
   getCurrentUserRentedCassettes(): Observable<CassetteModel> {

@@ -17,12 +17,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { CardComponent } from 'src/app/Widgets/card/card.component';
 
 @NgModule({
-  declarations: [DialogComponent, HeaderComponent],
+  declarations: [DialogComponent, HeaderComponent, CardComponent],
   imports: [
     CommonModule,
     FormsModule,
+
     MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
@@ -43,6 +45,7 @@ import { MatSelectModule } from '@angular/material/select';
   exports: [
     CommonModule,
     FormsModule,
+
     MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
@@ -56,11 +59,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatSelectModule,
     ReactiveFormsModule,
-    HeaderComponent,
     MatListModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+
+    HeaderComponent,
     DialogComponent,
+    CardComponent,
   ],
 })
 export class SharedModule {}

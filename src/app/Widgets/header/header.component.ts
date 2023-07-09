@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/Services/Auth/authorization.service';
 import { ConstRouteService } from 'src/app/Services/Const/const-route.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private authorizationService: AuthorizationService
+    private authorizationService: AuthorizationService,
+    private route: Router
   ) {}
 
   ngOnInit() {
@@ -24,5 +26,21 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authorizationService.logout();
+  }
+
+  navigateToUsers(): void {
+    this.route.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.manageUsers}`,
+    ]);
+  }
+  navigateToProfile(): void {
+    this.route.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.profile}`,
+    ]);
+  }
+  navigateToCassettes(): void {
+    this.route.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.cassetts}`,
+    ]);
   }
 }

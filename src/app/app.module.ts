@@ -12,6 +12,7 @@ import { AuthorizedComponent } from './Pages/Authorized/authorized.component';
 import { InterceptorService } from './Services/interceptor.service';
 import { AuthorizationService } from './Services/Auth/authorization.service';
 import { Observable, of } from 'rxjs';
+import { TestComponent } from './Pages/Unauthorized/test/test.component';
 
 export function getCurrentUser(authorizationService: AuthorizationService) {
   return (): Observable<void> => {
@@ -26,6 +27,7 @@ export function getCurrentUser(authorizationService: AuthorizationService) {
     //Pages
     LoginComponent,
     AuthorizedComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

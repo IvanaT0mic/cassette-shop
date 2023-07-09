@@ -1,0 +1,42 @@
+@import "./../../../assets/styles/variables";
+
+.card {
+  position: relative;
+  background-color: $retroGray;
+
+  margin: 10px;
+  padding: 1rem;
+
+  border-radius: 5px;
+  max-width: 300px;
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .card-img {
+    width: 230px;
+    height: fit-content;
+
+    img {
+      width: inherit;
+    }
+  }
+
+  .card-info {
+    max-width: 250px;
+    font-size: larger;
+    flex: 1;
+  }
+
+  .card-buttons {
+    height: 2rem;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+}

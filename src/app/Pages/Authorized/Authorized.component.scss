@@ -1,0 +1,23 @@
+.context {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  background-image: url("../../../assets/Img/background.jpg");
+  background-size: cover;
+
+  background-color: #d93333;
+}
+
+.inner-wrapper {
+  margin: 10px;
+  background-color: #c3b7b7cb;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  height: calc(100% - 2rem);
+  overflow: scroll;
+  overflow-x: hidden;
+}
