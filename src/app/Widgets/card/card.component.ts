@@ -17,6 +17,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class CardComponent extends CommonComponent implements OnInit {
   @Input() card: CassetteModel;
   @Input() showRentBtn: boolean;
+  @Input() cassettsManage: boolean = false;
   isAdmin: boolean = false;
   pictureUrl: string = 'cassette-tape';
   userId: number;
@@ -66,7 +67,7 @@ export class CardComponent extends CommonComponent implements OnInit {
     rentModel.casseteId = this.card.id;
     rentModel.userId = this.userService.user.id;
     this.cassetteService
-      .rentCassette(rentModel)
+      .returnCassette(rentModel)
       .pipe(
         takeUntil(this.localNgUnsubscribe),
         catchError((err) => {
@@ -74,7 +75,9 @@ export class CardComponent extends CommonComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        window.location.reload();
+      });
   }
 
   editCassete(): void {

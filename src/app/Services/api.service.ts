@@ -40,15 +40,15 @@ export class ApiService {
     return this.http.get<any>(API_KEY + 'Cassette/GetAllCassettes');
   }
 
-  getCurrentUserRentedCassettes(): Observable<CassetteModel> {
-    return this.http.get<CassetteModel>(
-      API_KEY + 'Cassette/GetCurrentUSersCassettes'
+  getCurrentUserRentedCassettes(): Observable<Array<CassetteModel>> {
+    return this.http.get<Array<CassetteModel>>(
+      API_KEY + 'Cassette/GetCurrentUsersCassettes'
     );
   }
 
   getRentedCassetessByUserId(id: number): Observable<any> {
     return this.http.get<CassetteModel>(
-      API_KEY + 'Cassette/GetCassettesByUserId/' + id
+      API_KEY + 'Cassette/GetCassettesByUserId/?id=' + id
     );
   }
 

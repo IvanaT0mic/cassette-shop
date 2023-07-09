@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersManagmentComponent } from './users-managment/users-managment.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RentedCassettesComponent } from './rented-cassettes/rented-cassettes.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     UsersManagmentComponent,
     UserRegisterComponent,
+    RentedCassettesComponent,
   ],
   exports: [CommonModule, ReactiveFormsModule],
 })

@@ -9,6 +9,18 @@
         formControlName="firstName"
       />
     </div>
+    <mat-error
+      *ngIf="
+        userForm.get('firstName').invalid && userForm.get('firstName').touched
+      "
+    >
+      First name is
+      <strong>
+        <span *ngIf="userForm.get('firstName').hasError('required')"
+          >required</span
+        >
+      </strong>
+    </mat-error>
     <div class="Group">
       <label for="lastName" class="form-label">Last Name</label>
       <input
@@ -18,6 +30,18 @@
         formControlName="lastName"
       />
     </div>
+    <mat-error
+      *ngIf="
+        userForm.get('lastName').invalid && userForm.get('lastName').touched
+      "
+    >
+      Last name is
+      <strong>
+        <span *ngIf="userForm.get('lastName').hasError('required')"
+          >required</span
+        >
+      </strong>
+    </mat-error>
     <div class="Group" *ngIf="userForUpdate.email != 'guest@guest.com'">
       <label for="email" class="form-label">Email</label>
       <input
@@ -27,6 +51,17 @@
         formControlName="email"
       />
     </div>
+    <mat-error
+      *ngIf="userForm.get('email').invalid && userForm.get('email').touched"
+    >
+      Email is
+      <strong>
+        <span *ngIf="userForm.get('email').hasError('required')">required</span>
+        <span *ngIf="userForm.get('email').hasError('email')">
+          not in correct format</span
+        >
+      </strong>
+    </mat-error>
     <div class="Group">
       <button
         [ngClass]="!userForm.valid ? 'disabled-button' : 'btn'"

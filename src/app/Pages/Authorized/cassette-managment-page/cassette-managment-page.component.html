@@ -9,6 +9,18 @@
         formControlName="name"
       />
     </div>
+    <mat-error
+      *ngIf="
+        cassetteForm.get('name').invalid && cassetteForm.get('name').touched
+      "
+    >
+      Name is
+      <strong>
+        <span *ngIf="cassetteForm.get('name').hasError('required')"
+          >required</span
+        >
+      </strong>
+    </mat-error>
     <div class="Group">
       <label for="quantity" class="form-label">Quantity</label>
       <input

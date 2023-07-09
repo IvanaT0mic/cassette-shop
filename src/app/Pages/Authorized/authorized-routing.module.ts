@@ -9,6 +9,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { IsAdminGuard } from 'src/app/Services/Guards/IsAdmin.guard';
 import { CassetteManagmentPageComponent } from './cassette-managment-page/cassette-managment-page.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { RentedCassettesComponent } from './rented-cassettes/rented-cassettes.component';
+import { CanRentGuard } from 'src/app/Services/Guards/CanRent.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +21,7 @@ const routes: Routes = [
       {
         path: ConstRouteService.manageUsers,
         component: UsersManagmentComponent,
+        canActivate: [IsAdminGuard],
       },
       {
         path: ConstRouteService.profile,
@@ -44,6 +47,11 @@ const routes: Routes = [
         path: ConstRouteService.manageCassettes + '/:id',
         component: CassetteManagmentPageComponent,
         canActivate: [IsAdminGuard],
+      },
+      {
+        path: ConstRouteService.myCassetts + '/:id',
+        component: RentedCassettesComponent,
+        canActivate: [CanRentGuard],
       },
       {
         path: ConstRouteService.cassetts,

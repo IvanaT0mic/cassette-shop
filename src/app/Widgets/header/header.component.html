@@ -2,8 +2,13 @@
   <button (click)="navigateToCassettes()" class="btn" mat-raised-button>
     Home
   </button>
-  <button (click)="navigateToCassettes()" class="btn" mat-raised-button>
-    Cassette
+  <button
+    (click)="navigateToMyCassettes()"
+    *ngIf="rentCassette"
+    class="btn"
+    mat-raised-button
+  >
+    My Cassettes
   </button>
   <button
     (click)="navigateToUsers()"

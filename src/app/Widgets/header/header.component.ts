@@ -12,6 +12,7 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class HeaderComponent implements OnInit {
   isAdmin: boolean = false;
+  rentCassette: boolean = false;
   fullName: string = '';
 
   constructor(
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.fullName = this.userService.user.fullName;
     this.isAdmin = this.userService.hasPrivilage(PermissionEnum.canManageUser);
+    this.rentCassette = this.userService.hasPrivilage(PermissionEnum.canRent);
   }
 
   logout() {
@@ -42,6 +44,12 @@ export class HeaderComponent implements OnInit {
   navigateToCassettes(): void {
     this.route.navigate([
       `${ConstRouteService.home}/${ConstRouteService.cassetts}`,
+    ]);
+  }
+  navigateToMyCassettes(): void {
+    this.route.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.myCassetts}/` +
+        this.userService.user.id,
     ]);
   }
 }

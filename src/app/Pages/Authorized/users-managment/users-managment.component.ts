@@ -28,6 +28,12 @@ export class UsersManagmentComponent extends CommonComponent implements OnInit {
       });
   }
 
+  viewActivity(user: User): void {
+    this.router.navigate([
+      `${ConstRouteService.home}/${ConstRouteService.myCassetts}/` + user.id,
+    ]);
+  }
+
   addUser(): void {
     this.router.navigate([
       `${ConstRouteService.home}/${ConstRouteService.register}`,

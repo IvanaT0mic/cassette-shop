@@ -1,0 +1,16 @@
+<div class="inner-wrapper">
+  <div *ngIf="!idExist; else AdminView">
+    <h4>Your rented cassetts</h4>
+    <h6>Notice: you can't rent more then 3 cassetts</h6>
+  </div>
+  <ng-template #AdminView></ng-template>
+  <div class="cards">
+    <div *ngFor="let x of cassettes">
+      <app-card
+        [card]="x"
+        [showRentBtn]="true"
+        [cassettsManage]="cassettsManage"
+      ></app-card>
+    </div>
+  </div>
+</div>
