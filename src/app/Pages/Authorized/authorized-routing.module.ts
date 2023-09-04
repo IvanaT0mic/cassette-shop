@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizedComponent } from './authorized.component';
-import { CassetteViewComponent } from './cassette-view/cassette-view.component';
 import { ConstRouteService } from 'src/app/Services/Const/const-route.service';
-import { AuthGuardService } from 'src/app/Services/Guards/auth.guard';
-import { UsersManagmentComponent } from './users-managment/users-managment.component';
-import { ProfileComponent } from './profile/profile.component';
-import { IsAdminGuard } from 'src/app/Services/Guards/IsAdmin.guard';
-import { CassetteManagmentPageComponent } from './cassette-managment-page/cassette-managment-page.component';
-import { UserRegisterComponent } from './user-register/user-register.component';
-import { RentedCassettesComponent } from './rented-cassettes/rented-cassettes.component';
 import { CanRentGuard } from 'src/app/Services/Guards/CanRent.guard';
+import { IsAdminGuard } from 'src/app/Services/Guards/IsAdmin.guard';
+import { AuthGuardService } from 'src/app/Services/Guards/auth.guard';
+import { AuthorizedComponent } from './Authorized.component';
+import { CassetteManagmentPageComponent } from './cassette-managment-page/cassette-managment-page.component';
+import { CassetteViewComponent } from './cassette-view/cassette-view.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RentedCassettesComponent } from './rented-cassettes/rented-cassettes.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import { UsersManagmentComponent } from './users-managment/users-managment.component';
 
 const routes: Routes = [
   {

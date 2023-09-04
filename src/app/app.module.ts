@@ -1,18 +1,16 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { LoginComponent } from './Pages/Unauthorized/login/login.component';
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './Shared/shared/shared.module';
-import { AuthorizedComponent } from './Pages/Authorized/authorized.component';
-import { InterceptorService } from './Services/interceptor.service';
-import { AuthorizationService } from './Services/Auth/authorization.service';
 import { Observable, of } from 'rxjs';
+import { AuthorizedComponent } from './Pages/Authorized/Authorized.component';
+import { LoginComponent } from './Pages/Unauthorized/login/login.component';
 import { TestComponent } from './Pages/Unauthorized/test/test.component';
+import { AuthorizationService } from './Services/Auth/authorization.service';
+import { InterceptorService } from './Services/Interceptor.service';
+import { SharedModule } from './Shared/shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 export function getCurrentUser(authorizationService: AuthorizationService) {
   return (): Observable<void> => {

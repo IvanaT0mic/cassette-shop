@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Pages/Unauthorized/login/login.component';
-import { ConstRouteService } from './Services/Const/const-route.service';
 import { TestComponent } from './Pages/Unauthorized/test/test.component';
+import { ConstRouteService } from './Services/Const/const-route.service';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: ConstRouteService.home,
     loadChildren: () =>
-      import('./Pages/Authorized/authorized.module').then(
+      import('./Pages/Authorized/Authorized.module').then(
         (x) => x.AuthorizedModule
       ),
   },
